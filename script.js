@@ -1,4 +1,5 @@
 const myLibrary = [];
+let bookCount = myLibrary.length;
 
 function Book(title, author, pages) {
   this.title = title;
@@ -24,30 +25,41 @@ function createCard(book) {
   const title = document.createElement('h3');
   const author = document.createElement('p');
   const pages = document.createElement('p');
+  const deleteBtn = document.createElement('img');
 
   title.textContent = book.title;
   author.textContent = book.author;
   pages.textContent = `${book.pages} pages`;
+  deleteBtn.src = './assets/delete-icon.svg';
 
-  card.append(title, author, pages);
-  card.setAttribute('class', 'card');
+  card.append(title, author, pages, deleteBtn);
+  card.classList.add('card');
+  card.setAttribute('data-index', bookCount++);
+  deleteBtn.classList.add('delete-btn');
+
+  deleteBtn.addEventListener('click', (e) => {
+    const index = e.target.parentElement.getAttribute('data-index');
+    myLibrary.splice(index, 1);
+    bookCount - 1;
+    e.target.parentElement.remove();
+  })
 
   return card;
 }
 
 addBookBtn.addEventListener('click', () => {
-  addBookModal.classList.add('class', 'card')
+  addBookModal.classList.add('card')
   addBookModal.showModal();
 });
 
 closeModal.addEventListener('click', () => {
-  addBookModal.classList.remove('class', 'card')
+  addBookModal.classList.remove('card')
   addBookModal.close();
 })
 
 dialog.addEventListener('click', (e) => {
   if (e.target === dialog) {
-    addBookModal.classList.remove('class', 'card')
+    addBookModal.classList.remove('card')
     addBookModal.close();
   }
 })
@@ -70,9 +82,10 @@ submitBtn.addEventListener('click', (e) => {
   author.value = '';
   pages.value = '';
 
-  addBookModal.classList.remove('class', 'card');
+  addBookModal.classList.remove('card');
   addBookModal.close();
 })
+
 
 function displayBooks() {
   for (const book of myLibrary) {

@@ -18,6 +18,17 @@ body {
   background-color: var(--primary-color);
 }
 
+.header-container {
+  margin: auto;
+  padding: 36px 16px;
+  background-color: var(--secondary-color);
+}
+
+.header {
+  max-width: 72rem;
+  margin: auto;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -101,4 +112,8 @@ input {
   border: none;
   color: white;
   margin-top: 24px;
+}
+
+.delete-btn {
+  width: 24px;
 }

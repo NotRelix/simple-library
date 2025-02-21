@@ -1,5 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --primary-color: #001524;
+  --secondary-color: #15616d;
+  --card-color: #ffecd1;
+  --accent: #ff7d00;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+.container {
+  margin: auto;
+  max-width: 72rem;
+}
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: var(--card-color);
+  border-radius: 8px;
 }

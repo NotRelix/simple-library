@@ -2,9 +2,10 @@
 
 :root {
   --primary-color: #001524;
-  --secondary-color: #15616d;
+  --secondary-color: #1b263b;
   --card-color: #ffecd1;
-  --accent: #ff7d00;
+  --has-read: #a7c957;
+  --not-read: #bc4749;
 }
 
 * {
@@ -45,7 +46,7 @@ body {
 .add-book-btn {
   font-weight: 500;
   font-size: 16px;
-  background-color: #073b4c;
+  background-color: var(--secondary-color);
   padding: 12px 24px;
   border-radius: 8px;
   border: none;
@@ -114,6 +115,29 @@ input {
   margin-top: 24px;
 }
 
+.pages {
+  margin-top: 24px;
+  font-weight: 500;
+}
+
+.has-read-btn {
+  padding: 8px;
+  border-radius: 8px;
+  text-align: left;
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.has-read {
+  background-color: var(--has-read);
+}
+
+.not-read {
+  background-color: var(--not-read);
+}
+
 .delete-btn {
   width: 24px;
+  align-self: end;
 }

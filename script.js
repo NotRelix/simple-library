@@ -9,12 +9,15 @@ function Book(title, author, pages) {
 function addBookToLibrary(title, author, pages) {
   const newBook = new Book(title, author, pages);
   myLibrary.push(newBook);
+  return newBook;
 }
 
 const library = document.querySelector('.library');
+const dialog = document.querySelector('dialog');
 const addBookModal = document.querySelector('.add-book-modal');
 const addBookBtn = document.querySelector('.add-book-btn');
 const closeModal = document.querySelector('.close-modal');
+const submitBtn = document.querySelector('.submit-btn');
 
 function createCard(book) {
   const card = document.createElement('div');
@@ -26,10 +29,9 @@ function createCard(book) {
   author.textContent = book.author;
   pages.textContent = `${book.pages} pages`;
 
-  
   card.append(title, author, pages);
   card.setAttribute('class', 'card');
-  
+
   return card;
 }
 
@@ -43,9 +45,38 @@ closeModal.addEventListener('click', () => {
   addBookModal.close();
 })
 
+dialog.addEventListener('click', (e) => {
+  if (e.target === dialog) {
+    addBookModal.classList.remove('class', 'card')
+    addBookModal.close();
+  }
+})
+
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const title = document.querySelector('#title');
+  const author = document.querySelector('#author');
+  const pages = document.querySelector('#pages');
+
+  if (!title.value || !author.value || !pages.value) {
+    return;
+  }
+
+  const newBook = addBookToLibrary(title.value, author.value, pages.value);
+  const card = createCard(newBook);
+  library.appendChild(card);
+
+  title.value = '';
+  author.value = '';
+  pages.value = '';
+
+  addBookModal.classList.remove('class', 'card');
+  addBookModal.close();
+})
+
 function displayBooks() {
   for (const book of myLibrary) {
-    card = createCard(book);
+    const card = createCard(book);
     library.appendChild(card);
   }
 }

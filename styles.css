@@ -19,8 +19,26 @@ body {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin: auto;
   max-width: 72rem;
+  padding: 16px 0;
+}
+
+.logo {
+  color: white;
+}
+
+.add-book-btn {
+  font-weight: 500;
+  font-size: 16px;
+  background-color: #073b4c;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  color: white;
 }
 
 .library {
@@ -36,6 +54,51 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 16px;
-  background-color: var(--card-color);
   border-radius: 8px;
+  border: none;
+  background-color: var(--card-color);
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-modal {
+  width: 16px;
+}
+
+.add-book-modal {
+  width: 18rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+input {
+  padding: 8px;
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+.submit-btn {
+  font-weight: 500;
+  font-size: 16px;
+  background-color: #073b4c;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  color: white;
+  margin-top: 24px;
 }

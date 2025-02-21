@@ -12,6 +12,9 @@ function addBookToLibrary(title, author, pages) {
 }
 
 const library = document.querySelector('.library');
+const addBookModal = document.querySelector('.add-book-modal');
+const addBookBtn = document.querySelector('.add-book-btn');
+const closeModal = document.querySelector('.close-modal');
 
 function createCard(book) {
   const card = document.createElement('div');
@@ -23,11 +26,22 @@ function createCard(book) {
   author.textContent = book.author;
   pages.textContent = `${book.pages} pages`;
 
+  
   card.append(title, author, pages);
   card.setAttribute('class', 'card');
-
+  
   return card;
 }
+
+addBookBtn.addEventListener('click', () => {
+  addBookModal.classList.add('class', 'card')
+  addBookModal.showModal();
+});
+
+closeModal.addEventListener('click', () => {
+  addBookModal.classList.remove('class', 'card')
+  addBookModal.close();
+})
 
 function displayBooks() {
   for (const book of myLibrary) {

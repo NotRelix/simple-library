@@ -68,10 +68,17 @@ function createCard(book) {
   deleteBtn.addEventListener('click', (e) => {
     const index = e.target.parentElement.getAttribute('data-index');
     myLibrary.splice(index, 1);
-    bookCount -= 1;
+    
     e.target.parentElement.remove();
-  })
 
+    const cards = document.querySelectorAll('.card');
+    cards.forEach((card, index) => {
+      card.setAttribute('data-index', index);
+    })
+
+    bookCount--;
+  })
+  
   return card;
 }
 
@@ -113,7 +120,6 @@ submitBtn.addEventListener('click', (e) => {
   addBookModal.classList.remove('card');
   addBookModal.close();
 })
-
 
 function displayBooks() {
   for (const book of myLibrary) {

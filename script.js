@@ -70,7 +70,7 @@ function createCard(book) {
   deleteBtn.addEventListener('click', (e) => {
     const index = e.target.parentElement.getAttribute('data-index');
     myLibrary.splice(index, 1);
-    
+
     e.target.parentElement.remove();
 
     const cards = document.querySelectorAll('.card');
@@ -80,8 +80,31 @@ function createCard(book) {
 
     bookCount--;
   })
-  
+
   return card;
+}
+
+function showError(title, author, pages) {
+  const errorMsg = document.querySelector(".error-message");
+  let errorText = "";
+  if (title.validity.valueMissing) {
+    errorText = "Please enter a book title.";
+  } else if (author.validity.valueMissing) {
+    errorText = "Please enter the author's name.";
+  } else if (pages.validity.valueMissing) {
+    errorText = "Please enter the number of pages.";
+  } else if (pages.validity.typeMismatch) {
+    errorText = "Please enter a valid number.";
+  } else if (pages.validity.rangeUnderflow) {
+    errorText = "The number of pages must be at least 1.";
+  }
+  errorMsg.textContent = errorText;
+  errorMsg.classList.remove("hidden");
+}
+
+function hideError() {
+  const errorMsg = document.querySelector(".error-message");
+  errorMsg.classList.add("hidden");
 }
 
 addBookBtn.addEventListener('click', () => {
@@ -92,13 +115,30 @@ addBookBtn.addEventListener('click', () => {
 closeModal.addEventListener('click', () => {
   addBookModal.classList.remove('card')
   addBookModal.close();
+  hideError();
 })
 
 dialog.addEventListener('click', (e) => {
   if (e.target === dialog) {
     addBookModal.classList.remove('card')
     addBookModal.close();
+    hideError();
   }
+})
+
+const title = document.querySelector("#title");
+title.addEventListener('input', () => {
+  hideError();
+})
+
+const author = document.querySelector("#author");
+author.addEventListener('input', () => {
+  hideError();
+})
+
+const pages = document.querySelector("#pages");
+pages.addEventListener('input', () => {
+  hideError();
 })
 
 submitBtn.addEventListener('click', (e) => {
@@ -107,7 +147,10 @@ submitBtn.addEventListener('click', (e) => {
   const author = document.querySelector('#author');
   const pages = document.querySelector('#pages');
 
-  if (!title.value || !author.value || !pages.value) {
+  if (!title.validity.valid ||
+    !author.validity.valid ||
+    !pages.validity.valid) {
+    showError(title, author, pages);
     return;
   }
 
